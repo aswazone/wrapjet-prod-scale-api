@@ -1,0 +1,2 @@
+{"level":"info","message":"Hello from WrapJet-Prod-Scale-API !","service":"wrapjet-prod-scale-api","timestamp":"2025-10-15T13:05:37.425Z"}
+{"level":"info","message":"::1 - - [15/Oct/2025:13:05:37 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-15T13:05:37.448Z"}

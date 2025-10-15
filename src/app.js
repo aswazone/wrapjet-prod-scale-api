@@ -1,10 +1,21 @@
 import express from 'express';
 import 'dotenv/config';
+import logger from '#config/logger.js';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const app = express();
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }));
 
 app.get('/', (req, res) => {
-  console.log(process.env.DATABASE_URL,'DATABASE_URL');
+  logger.info('Hello from WrapJet-Prod-Scale-API !');
   res.status(200).send('Hello from WrapJet-Prod-Scale-API ✨');
 });
 
