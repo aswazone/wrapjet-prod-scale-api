@@ -91,6 +91,7 @@ Make sure you have the following installed on your machine:
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en)
 - [npm](https://www.npmjs.com/) (Node Package Manager)
+- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
 
 **Cloning the Repository**
 
@@ -99,6 +100,138 @@ git clone https://github.com/aswazone/wrapjet-prod-scale-api.git
 
 cd wrapjet-prod-scale-api
 ```
+
+---
+
+## 🐳 Docker Setup (Recommended)
+
+This project supports **two deployment modes**: Development (with Neon Local) and Production (with Neon Cloud).
+
+### 📦 Development Environment (Local with Neon Local)
+
+Use **Neon Local** to run a local PostgreSQL instance that simulates Neon's serverless database for development.
+
+**1. Set Up Environment Variables**
+
+The `.env.development` file is already configured for local development:
+
+```env
+# Server configuration
+PORT=3000
+NODE_ENV=development
+LOG_LEVEL=debug
+
+# Database configuration - Neon Local (Docker Compose)
+DATABASE_URL=postgres://postgres:postgres@neon-local:5432/wrapjet_dev
+```
+
+**2. Start Development Environment**
+
+Run the application with Neon Local using Docker Compose:
+
+```bash
+docker-compose -f docker-compose.dev.yml up --build
+```
+
+This will:
+
+- Start **Neon Local** (PostgreSQL) on `localhost:5432`
+- Start the **application** on `localhost:3000`
+- Enable **hot-reload** for development
+
+**3. Run Database Migrations**
+
+Once the containers are running, execute migrations:
+
+```bash
+docker-compose -f docker-compose.dev.yml exec app npm run db:migrate
+```
+
+**4. (Optional) Access Drizzle Studio**
+
+To manage your database visually with Drizzle Studio:
+
+```bash
+docker-compose -f docker-compose.dev.yml --profile tools up drizzle-studio
+```
+
+Access Drizzle Studio at: [http://localhost:4983](http://localhost:4983)
+
+**5. Stop Development Environment**
+
+```bash
+docker-compose -f docker-compose.dev.yml down
+```
+
+To remove volumes (database data):
+
+```bash
+docker-compose -f docker-compose.dev.yml down -v
+```
+
+---
+
+### 🚀 Production Environment (Neon Cloud)
+
+For production, the application connects to **Neon Cloud** (serverless PostgreSQL).
+
+**1. Set Up Environment Variables**
+
+Update `.env.production` with your **Neon Cloud** database URL:
+
+```env
+# Server configuration
+PORT=3000
+NODE_ENV=production
+LOG_LEVEL=info
+
+# Database configuration - Neon Cloud (Production)
+DATABASE_URL=postgres://user:password@ep-example-123456.us-east-2.aws.neon.tech/wrapjet_prod?sslmode=require
+```
+
+> ⚠️ **Security Note**: In production, inject `DATABASE_URL` via environment variables from your secrets manager (AWS Secrets Manager, Kubernetes Secrets, etc.). **Never commit production credentials to version control.**
+
+**2. Start Production Environment**
+
+Export your production database URL and start the application:
+
+**Linux/macOS:**
+
+```bash
+export DATABASE_URL="your-neon-cloud-database-url"
+docker-compose -f docker-compose.prod.yml up --build -d
+```
+
+**Windows (PowerShell):**
+
+```powershell
+$env:DATABASE_URL="your-neon-cloud-database-url"
+docker-compose -f docker-compose.prod.yml up --build -d
+```
+
+**3. Run Database Migrations**
+
+```bash
+docker-compose -f docker-compose.prod.yml exec app npm run db:migrate
+```
+
+**4. Monitor Logs**
+
+```bash
+docker-compose -f docker-compose.prod.yml logs -f app
+```
+
+**5. Stop Production Environment**
+
+```bash
+docker-compose -f docker-compose.prod.yml down
+```
+
+---
+
+## 💻 Local Setup (Without Docker)
+
+If you prefer to run the application without Docker:
 
 **Installation**
 
@@ -134,6 +267,104 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+
+---
+
+## 📚 Additional Docker Commands
+
+**View Running Containers**
+
+```bash
+docker ps
+```
+
+**Access Application Shell**
+
+```bash
+# Development
+docker-compose -f docker-compose.dev.yml exec app sh
+
+# Production
+docker-compose -f docker-compose.prod.yml exec app sh
+```
+
+**View Application Logs**
+
+```bash
+# Development
+docker-compose -f docker-compose.dev.yml logs -f app
+
+# Production
+docker-compose -f docker-compose.prod.yml logs -f app
+```
+
+**Rebuild Containers**
+
+```bash
+# Development
+docker-compose -f docker-compose.dev.yml up --build
+
+# Production
+docker-compose -f docker-compose.prod.yml up --build
+```
+
+---
+
+## 🗃️ Database Management
+
+**Generate Migrations**
+
+```bash
+npm run db:generate
+```
+
+**Run Migrations**
+
+```bash
+# Development
+docker-compose -f docker-compose.dev.yml exec app npm run db:migrate
+
+# Production
+docker-compose -f docker-compose.prod.yml exec app npm run db:migrate
+```
+
+**Open Drizzle Studio**
+
+```bash
+npm run db:studio
+```
+
+---
+
+## 🔐 Environment Variables Reference
+
+| Variable       | Description                  | Development   | Production    |
+| -------------- | ---------------------------- | ------------- | ------------- |
+| `NODE_ENV`     | Environment mode             | `development` | `production`  |
+| `PORT`         | Application port             | `3000`        | `3000`        |
+| `LOG_LEVEL`    | Logging verbosity            | `debug`       | `info`        |
+| `DATABASE_URL` | PostgreSQL connection string | Neon Local    | Neon Cloud    |
+| `ARCJET_KEY`   | Arcjet API key               | Your dev key  | Your prod key |
+
+---
+
+## 🌐 Neon Database Setup
+
+### Development: Neon Local
+
+- Automatically started via `docker-compose.dev.yml`
+- Runs PostgreSQL locally in a Docker container
+- Simulates Neon's serverless database features
+- Data persists in Docker volumes
+- Learn more: [Neon Local Documentation](https://neon.com/docs/local/neon-local)
+
+### Production: Neon Cloud
+
+- Fully managed serverless PostgreSQL
+- Sign up at: [Neon](https://jsm.dev/dops25-neon)
+- Create a project and database
+- Copy your connection string to `.env.production`
+- Supports autoscaling, branching, and point-in-time recovery
 
 ##
 
