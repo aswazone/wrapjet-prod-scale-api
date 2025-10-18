@@ -54,3 +54,26 @@
 {"level":"info","message":"User authenticated successfully: aswin@gmail.com","service":"wrapjet-prod-scale-api","timestamp":"2025-10-17T08:48:00.744Z"}
 {"level":"info","message":"User signed in successfully: aswin@gmail.com","service":"wrapjet-prod-scale-api","timestamp":"2025-10-17T08:48:00.755Z"}
 {"level":"info","message":"::1 - - [17/Oct/2025:08:48:00 +0000] \"POST /api/auth/sign-in?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 152 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-17T08:48:00.760Z"}
+{"level":"info","message":"User signed out successfully","service":"wrapjet-prod-scale-api","timestamp":"2025-10-17T08:54:30.061Z"}
+{"level":"info","message":"::1 - - [17/Oct/2025:08:54:30 +0000] \"POST /api/auth/sign-out?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 42 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-17T08:54:30.077Z"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:03 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 73 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:03.327Z"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:08 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 74 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:08.516Z"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:08 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 74 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:08.779Z"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:09 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 74 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.039Z"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:09 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 200 74 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.284Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.542Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:09 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.544Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.700Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:09 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.704Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.880Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:09 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:09.884Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:10.048Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:10 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:10.051Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:10.225Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:10 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:10.228Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:10.454Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:10 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:10.458Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:22.258Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:22 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:22.262Z"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:50.335Z","userAgent":"HTTPie"}
+{"level":"info","message":"::1 - - [18/Oct/2025:09:11:50 +0000] \"GET /health HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:50.338Z"}
