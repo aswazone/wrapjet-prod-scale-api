@@ -370,5 +370,5 @@ npm run db:studio
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;border:solid 1px #1cb5f1;border-radius:50px;padding:7px">
   <img src="https://avatars.githubusercontent.com/u/177445642?s=400&u=5504247eb9ea198d8fdac615f25b22655b16c2d9&v=4" width="50" alt="Aswazone" style="border-radius: 50%; margin-right: 10px; box-shadow:0px 0px 1px 2px #0b4d66;">
-  <p style="margin: 0;">Follow <a href="https://github.com/aswazone">Aswazone</a> on GitHub for more projects like this.</p>
+  <p style="margin: 0;">Follow <a href="https://github.com/aswazone">Aswazone</a> on GitHub for more projects simillar to this.</p>
 </div>
