@@ -77,3 +77,9 @@
 {"level":"info","message":"::1 - - [18/Oct/2025:09:11:22 +0000] \"GET /health?email=admin%40gmail.com&password=admin%40123 HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:22.262Z"}
 {"ip":"::1","level":"warn","message":"Rate limit exceeded !","path":"/health","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:50.335Z","userAgent":"HTTPie"}
 {"level":"info","message":"::1 - - [18/Oct/2025:09:11:50 +0000] \"GET /health HTTP/1.1\" 429 112 \"-\" \"HTTPie\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T09:11:50.338Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:15:49:28 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T15:49:28.161Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:15:49:28 +0000] \"GET /api HTTP/1.1\" 200 50 \"-\" \"-\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T15:49:28.221Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:15:49:28 +0000] \"GET /nonexistent HTTP/1.1\" 404 29 \"-\" \"-\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T15:49:28.272Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:15:50:23 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T15:50:23.978Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:15:50:24 +0000] \"GET /api HTTP/1.1\" 200 50 \"-\" \"-\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T15:50:24.105Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:15:50:24 +0000] \"GET /nonexistent HTTP/1.1\" 404 29 \"-\" \"-\"","service":"wrapjet-prod-scale-api","timestamp":"2025-10-18T15:50:24.159Z"}
