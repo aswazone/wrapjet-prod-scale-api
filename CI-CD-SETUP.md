@@ -13,12 +13,14 @@ Your project now has a complete CI/CD pipeline using **GitHub Actions** with thr
 Automatically checks code quality on every push and pull request.
 
 **Features:**
+
 - ✅ ESLint code quality checks
 - ✅ Prettier formatting verification
 - ✅ Clear error annotations with fix suggestions
 - ✅ GitHub step summary with results
 
 **Triggers:**
+
 - Push to `main` or `staging`
 - Pull requests to `main` or `staging`
 
@@ -29,6 +31,7 @@ Automatically checks code quality on every push and pull request.
 Runs automated tests with coverage reporting.
 
 **Features:**
+
 - ✅ Jest test execution
 - ✅ PostgreSQL 16 service container
 - ✅ Code coverage reports
@@ -37,11 +40,13 @@ Runs automated tests with coverage reporting.
 - ✅ Test failure annotations
 
 **Environment:**
+
 - `NODE_ENV=test`
 - `NODE_OPTIONS=--experimental-vm-modules`
 - PostgreSQL database for testing
 
 **Triggers:**
+
 - Push to `main` or `staging`
 - Pull requests to `main` or `staging`
 
@@ -52,6 +57,7 @@ Runs automated tests with coverage reporting.
 Builds and publishes Docker images to Docker Hub.
 
 **Features:**
+
 - ✅ Multi-platform builds (linux/amd64, linux/arm64)
 - ✅ Docker layer caching for speed
 - ✅ Multiple image tags
@@ -59,12 +65,14 @@ Builds and publishes Docker images to Docker Hub.
 - ✅ Build summaries with pull commands
 
 **Image Tags:**
+
 - `latest` - Latest from main branch
 - `main` - Current main branch
 - `main-<sha>` - Specific commit
 - `prod-YYYYMMDD-HHmmss` - Timestamped releases
 
 **Triggers:**
+
 - Push to `main` branch
 - Manual workflow dispatch
 
@@ -81,12 +89,13 @@ Add these secrets to your GitHub repository for Docker deployment:
 3. Click **New repository secret**
 4. Add the following secrets:
 
-| Secret Name | Description | Example |
-|-------------|-------------|---------|
-| `DOCKER_USERNAME` | Your Docker Hub username | `johndoe` |
+| Secret Name       | Description                         | Example          |
+| ----------------- | ----------------------------------- | ---------------- |
+| `DOCKER_USERNAME` | Your Docker Hub username            | `johndoe`        |
 | `DOCKER_PASSWORD` | Docker Hub password or access token | `dckr_pat_xxxxx` |
 
 **Getting Docker Hub Access Token:**
+
 1. Log in to [Docker Hub](https://hub.docker.com/)
 2. Go to **Account Settings** → **Security** → **Access Tokens**
 3. Click **New Access Token**
@@ -192,6 +201,7 @@ Generate tags & summary
 ### 1. Lint and Format
 
 **What happens:**
+
 1. Checkout code
 2. Setup Node.js 20.x with npm cache
 3. Install dependencies with `npm ci`
@@ -200,6 +210,7 @@ Generate tags & summary
 6. Provide fix suggestions if issues found
 
 **Success Output:**
+
 ```
 ✅ Code Quality Check Passed
 - ✅ ESLint: No issues found
@@ -207,6 +218,7 @@ Generate tags & summary
 ```
 
 **Failure Output:**
+
 ```
 ❌ Code Quality Check Failed
 
@@ -222,6 +234,7 @@ Run: npm run format
 ### 2. Tests
 
 **What happens:**
+
 1. Checkout code
 2. Setup Node.js 20.x with npm cache
 3. Start PostgreSQL service container
@@ -231,6 +244,7 @@ Run: npm run format
 7. Generate test summary
 
 **Success Output:**
+
 ```
 ✅ Tests Passed
 
@@ -246,6 +260,7 @@ Run: npm run format
 ```
 
 **Failure Output:**
+
 ```
 ❌ Tests Failed
 
@@ -260,6 +275,7 @@ Run 'npm test' locally to reproduce failures
 ### 3. Docker Build and Push
 
 **What happens:**
+
 1. Checkout code
 2. Setup Docker Buildx
 3. Login to Docker Hub
@@ -269,6 +285,7 @@ Run 'npm test' locally to reproduce failures
 7. Generate build summary
 
 **Success Output:**
+
 ```
 🐳 Docker Image Published
 
@@ -304,7 +321,7 @@ on:
     branches:
       - main
       - staging
-      - develop  # Add this
+      - develop # Add this
 ```
 
 ### Add Coverage Thresholds
@@ -329,7 +346,7 @@ Update in all workflow files:
 - name: Setup Node.js
   uses: actions/setup-node@v4
   with:
-    node-version: '22.x'  # Change this
+    node-version: '22.x' # Change this
     cache: 'npm'
 ```
 
@@ -340,6 +357,7 @@ Update in all workflow files:
 ### Problem: Lint fails in CI but passes locally
 
 **Solution:**
+
 ```bash
 # Ensure you're using the same Node version
 node --version
@@ -353,11 +371,13 @@ npm run lint
 ### Problem: Tests pass locally but fail in CI
 
 **Causes:**
+
 - Environment variable differences
 - Database connection issues
 - Timezone differences
 
 **Solution:**
+
 ```bash
 # Run tests with CI environment variables
 NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npm test
@@ -366,11 +386,13 @@ NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npm test
 ### Problem: Docker build fails
 
 **Common issues:**
+
 1. Incorrect Docker Hub credentials
 2. Missing secrets in GitHub
 3. Dockerfile errors
 
 **Solution:**
+
 ```bash
 # Test Docker build locally
 docker build -t test-image --target production .
@@ -395,6 +417,7 @@ Ensure Jest is configured correctly in `package.json`:
 ## 📚 Best Practices
 
 ### Before Committing
+
 ```bash
 # Always run these locally first
 npm run lint:fix
@@ -403,13 +426,16 @@ npm test
 ```
 
 ### Commit Messages
+
 Use clear, descriptive commit messages:
+
 ```bash
 ✅ Good: "Add user authentication middleware"
 ❌ Bad: "update stuff"
 ```
 
 ### Branch Strategy
+
 ```
 main (production)
   ↑
@@ -419,6 +445,7 @@ feature/* (development)
 ```
 
 ### Pull Requests
+
 - Always create PRs for code review
 - Wait for all checks to pass
 - Review workflow summaries

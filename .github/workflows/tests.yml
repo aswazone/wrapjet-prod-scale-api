@@ -85,9 +85,9 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "Some tests failed. Please review the test output above." >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ "${{ steps.coverage.outputs.has_coverage }}" == "true" ]; then
             echo "### 📊 Coverage Report" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -113,7 +113,7 @@ jobs:
             echo "- No test files were found" >> $GITHUB_STEP_SUMMARY
             echo "- Coverage collection failed" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📝 Test Environment" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
