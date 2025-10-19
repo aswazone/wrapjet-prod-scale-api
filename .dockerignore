@@ -42,6 +42,7 @@ coverage
 # Docker files
 Dockerfile*
 docker-compose*.yml
+
 .dockerignore
 
 # CI/CD
