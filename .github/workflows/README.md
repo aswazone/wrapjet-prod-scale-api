@@ -7,16 +7,19 @@ This directory contains CI/CD workflows for automated testing, linting, and depl
 ### 1. Lint and Format (`lint-and-format.yml`)
 
 **Triggers:**
+
 - Push to `main` or `staging` branches
 - Pull requests to `main` or `staging` branches
 
 **What it does:**
+
 - ✅ Runs ESLint to check code quality
 - ✅ Runs Prettier to check code formatting
 - ✅ Provides clear annotations and fix suggestions
 - ✅ Generates GitHub step summary with results
 
 **Fix commands:**
+
 ```bash
 # Fix ESLint issues
 npm run lint:fix
@@ -30,10 +33,12 @@ npm run format
 ### 2. Tests (`tests.yml`)
 
 **Triggers:**
+
 - Push to `main` or `staging` branches
 - Pull requests to `main` or `staging` branches
 
 **What it does:**
+
 - ✅ Runs all tests with Jest
 - ✅ Generates code coverage reports
 - ✅ Uploads coverage artifacts (30-day retention)
@@ -42,11 +47,13 @@ npm run format
 - ✅ Uses PostgreSQL 16 service container for database tests
 
 **Environment:**
+
 - `NODE_ENV=test`
 - `NODE_OPTIONS=--experimental-vm-modules`
 - `DATABASE_URL=postgres://postgres:postgres@localhost:5432/wrapjet_test`
 
 **Run locally:**
+
 ```bash
 npm test
 ```
@@ -56,10 +63,12 @@ npm test
 ### 3. Docker Build and Push (`docker-build-and-push.yml`)
 
 **Triggers:**
+
 - Push to `main` branch
 - Manual trigger via `workflow_dispatch`
 
 **What it does:**
+
 - ✅ Builds production Docker image
 - ✅ Supports multi-platform builds (linux/amd64, linux/arm64)
 - ✅ Pushes to Docker Hub
@@ -68,12 +77,14 @@ npm test
 - ✅ Creates comprehensive build summary
 
 **Image tags generated:**
+
 - `latest` - Latest stable version from main branch
 - `main` - Current main branch version
 - `main-<sha>` - Specific commit SHA
 - `prod-YYYYMMDD-HHmmss` - Timestamped production release
 
 **Pull command:**
+
 ```bash
 docker pull <DOCKER_USERNAME>/wrapjet-prod-scale-api:latest
 ```
@@ -86,12 +97,13 @@ To enable all workflows, configure these secrets in your GitHub repository:
 
 ### Docker Hub Secrets (for docker-build-and-push.yml)
 
-| Secret | Description |
-|--------|-------------|
-| `DOCKER_USERNAME` | Your Docker Hub username |
+| Secret            | Description                              |
+| ----------------- | ---------------------------------------- |
+| `DOCKER_USERNAME` | Your Docker Hub username                 |
 | `DOCKER_PASSWORD` | Your Docker Hub password or access token |
 
 **How to add secrets:**
+
 1. Go to repository **Settings** → **Secrets and variables** → **Actions**
 2. Click **New repository secret**
 3. Add each secret with its value
@@ -155,7 +167,9 @@ npm run format
 ## 📝 Workflow Features
 
 ### Caching
+
 All workflows use npm caching to speed up dependency installation:
+
 ```yaml
 - uses: actions/setup-node@v4
   with:
@@ -164,13 +178,17 @@ All workflows use npm caching to speed up dependency installation:
 ```
 
 ### Annotations
+
 Workflows provide inline annotations in the GitHub UI:
+
 - ❌ **Errors**: Show what went wrong
 - 💡 **Suggestions**: Provide fix commands
 - ℹ️ **Notices**: Inform about successful operations
 
 ### Step Summaries
+
 Each workflow generates a markdown summary visible in the Actions tab:
+
 - Test coverage tables
 - Docker image details
 - Fix suggestions
@@ -190,7 +208,7 @@ on:
     branches:
       - main
       - staging
-      - develop  # Add this
+      - develop # Add this
 ```
 
 ### Adjust Coverage Requirements
@@ -230,15 +248,19 @@ platforms: linux/amd64,linux/arm64,linux/arm/v7
 ## 🆘 Troubleshooting
 
 ### Workflow fails with "npm ci" error
+
 **Solution:** Delete `package-lock.json` and run `npm install` to regenerate it.
 
 ### Tests fail in CI but pass locally
+
 **Solution:** Check environment variables. CI uses `NODE_ENV=test` and PostgreSQL service.
 
 ### Docker build fails with authentication error
+
 **Solution:** Verify `DOCKER_USERNAME` and `DOCKER_PASSWORD` secrets are correctly set.
 
 ### Coverage report not generated
+
 **Solution:** Ensure Jest is configured correctly and test files exist.
 
 ---
@@ -246,11 +268,13 @@ platforms: linux/amd64,linux/arm64,linux/arm/v7
 ## ✅ Best Practices
 
 1. **Always run tests locally before pushing**
+
    ```bash
    npm test
    ```
 
 2. **Fix linting issues before committing**
+
    ```bash
    npm run lint:fix
    npm run format
